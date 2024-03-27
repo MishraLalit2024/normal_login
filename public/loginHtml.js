@@ -3,9 +3,11 @@ let form = document.querySelector("form");
 form.addEventListener("submit", async function(event){
     event.preventDefault();
 
-    var val = document.getElementById('l-email').value;
+    var email = document.getElementById('l-email').value;
+    var pas = document.getElementById('l-pass').value;
     var data = {
-        email: val
+        email: email,
+        pass: pas
     }
     const resp = fetch("http://localhost:9900/checkEmail", {
         method: "POST",
@@ -21,7 +23,14 @@ form.addEventListener("submit", async function(event){
         }
     })
     .then(data => {
-        console.log("Server Response: "+data);
+        if(data.data=="done"){
+            document.getElementById('linker').innerHTML="";
+            document.getElementById('linker').innerText="Login successfully"
+        }
+        else{
+            document.getElementById('linker').innerHTML="";
+            document.getElementById('linker').innerText="Inputs does not macth. Refresh the page and Try again!"
+        }
     })
     .catch(error =>{
         console.log(error);

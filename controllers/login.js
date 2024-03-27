@@ -1,6 +1,15 @@
-function loginRed(req, res, next){
-    res.redirect(302, '/hello');
+const { login } = require("../middlewares/sqlMaker");
+
+function loginRed(req, res){
+    res.render('login');
+}
+
+function emailCheck(req, res){
+    console.log(req.body);
+    console.log("Login data uploaded");
+    login(req, res);
 }
 
 
-module.exports = {loginRed};
+
+module.exports = {loginRed, emailCheck};

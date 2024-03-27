@@ -1,6 +1,7 @@
 const md5           = require("md5");
 const {regUser}     = require("../controllers/queryExecuter");
 const {pasUser}     = require("../controllers/queryExecuter");
+const con = require("../con/db");
 
 function sqlMaker(req, res, next){
     const obj = req.body;
@@ -38,5 +39,22 @@ function passwdMaker(req, res, next) {
     next();
 }
 
+function login(req, res, next){
+    const loginData = req.body;
+    let pas = loginData.pass;
+    let email = loginData.email;
 
-module.exports = {sqlMaker, passwdMaker};
+    sql = `SELECT * from users_master WHERE email="${email}"`;
+    console.log(sql);
+    con.query(sql, (err, data)=>{
+        let keyStr = md5(pas+ data[0]['salt']);
+        if(keyStr==data[0]['pwd']) {
+            res.json({data: "done"})
+        }
+        else{
+            res.json({data: "Not done"})
+        }
+    })
+}
+
+module.exports = {sqlMaker, passwdMaker, login};

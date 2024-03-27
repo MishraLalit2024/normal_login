@@ -2,10 +2,9 @@ const express          = require('express');
 const demo             = require('../controllers/demo');
 const home             = require('../controllers/home');
 const register         = require('../controllers/register');
-const { sqlMaker }     = require('../middlewares/sqlMaker');
-const { passwdMaker }  = require('../middlewares/sqlMaker')
+const { sqlMaker, passwdMaker }     = require('../middlewares/sqlMaker');
 const active           = require('../controllers/active');
-const { loginRed }     = require('../controllers/login');
+const { loginRed, emailCheck }     = require('../controllers/login');
 const router           = express.Router();
 
 
@@ -19,16 +18,11 @@ router.post('/postReg', sqlMaker);
 
 router.get('/activate', active);
 
-router.post('/postPas', passwdMaker, loginRed);
+router.post('/postPas', passwdMaker);
 
-router.get('/hello', (req, res)=>{
-    res.render('login');
-});
+router.get('/hello', loginRed);
 
-router.post('/checkEmail', (req, res)=>{
-    console.log(req.body);
-    console.log("Email is verified");
-})
+router.post('/checkEmail', emailCheck)
 
 
 
