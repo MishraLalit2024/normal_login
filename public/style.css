@@ -1,0 +1,81 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    padding: 16px;
+    margin: 0;
+    margin-bottom: 15px;
+    color: white;
+    background-color: black;
+}
+
+
+
+
+.container{
+    background-color: bisque;
+    width: 45%;
+    margin: 0 auto;
+    padding: 56px 16px;
+    border-radius: 36px;
+    box-shadow: rgb(114, 114, 114) 0px 50px 100px -20px, rgb(201, 201, 201) 0px 30px 60px -30px;
+}
+.container label{
+    font-size: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+}
+.container input[type=text]{
+    border-style: none;
+    padding: 16px 36px;
+    border-radius: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.container input[type=password]{
+    border-style: none;
+    padding: 16px 36px;
+    border-radius: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.container input[type=submit]{
+    background-color: rgb(0, 217, 255);
+    border-style: none;
+    padding: 16px 36px;
+    font-size: 16px;
+    border-radius: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.container input[type=reset]{
+    background-color: ghostwhite;
+    font-size: 16px;
+    border-style: none;
+    padding: 16px 36px;
+    border-radius: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.bottom-buttons{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+.bottom-buttons > *{
+    margin: 24px 16px 0 0;
+}
+
+
+
+.flexer{
+    display: flex;
+    justify-content: space-between;
+}
+.flexer > * {
+    width: calc(100%/3);
+}
+.flexer div{
+    margin: auto 0;
+    margin: 8px 0;
+}
