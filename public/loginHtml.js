@@ -1,15 +1,16 @@
 let form = document.querySelector("form");
 
-form.addEventListener("submit", isEmailExist(e));
-
-async function isEmailExist(event){
+form.addEventListener("submit", async function(event){
     event.preventDefault();
 
-    var val = document.getElementById('l-email').ariaValueMax;
+    var val = document.getElementById('l-email').value;
+    var data = {
+        email: val
+    }
     const resp = fetch("http://localhost:9900/checkEmail", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: val
+        body: JSON.stringify(data)
     })
     .then(resp => {
         if(resp.ok){
@@ -25,4 +26,4 @@ async function isEmailExist(event){
     .catch(error =>{
         console.log(error);
     })
-}
+});

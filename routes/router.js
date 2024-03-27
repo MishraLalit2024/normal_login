@@ -26,6 +26,7 @@ router.get('/hello', (req, res)=>{
 });
 
 router.post('/checkEmail', (req, res)=>{
+    console.log(req.body);
     console.log("Email is verified");
 })
 
