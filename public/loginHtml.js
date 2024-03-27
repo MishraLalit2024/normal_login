@@ -1,11 +1,8 @@
 let form = document.querySelector("form");
 
+form.addEventListener("submit", isEmailExist(e));
 
-
-
-// document.getElementById('l-email').addEventListener("focusout", isEmailExist(e))
-
-async function isEmailExist(){
+async function isEmailExist(event){
     event.preventDefault();
 
     var val = document.getElementById('l-email').ariaValueMax;
