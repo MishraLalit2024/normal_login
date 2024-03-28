@@ -2,6 +2,9 @@ const md5           = require("md5");
 const {regUser}     = require("../controllers/queryExecuter");
 const {pasUser}     = require("../controllers/queryExecuter");
 const con = require("../con/db");
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
 
 function sqlMaker(req, res, next){
     const obj = req.body;
@@ -9,8 +12,8 @@ function sqlMaker(req, res, next){
     let seed = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
     let actCode = ``;
     for(let i=0; i<10; i++){
-        actCode += `${seed[Math.floor(Math.random()*10)]}`
     }
+    actCode += `${seed[Math.floor(Math.random()*10)]}`
 
     sql = `INSERT INTO users_master(fname, lname, email, phone, act_code, rec_stat) VALUES(`;
     Object.keys(obj).forEach(el => {
@@ -49,11 +52,24 @@ function login(req, res, next){
     con.query(sql, (err, data)=>{
         let keyStr = md5(pas+ data[0]['salt']);
         if(keyStr==data[0]['pwd']) {
-            res.json({data: "done"})
-        }
-        else{
-            res.json({data: "Not done"})
-        }
+            const user={
+                email: email,
+            };
+            console.log(user);
+            const token=jwt.sign(user,'hii',{
+                expiresIn:'1800s'
+            });
+            console.log(token);
+            res.cookie('access_token',token,{
+                    maxAge:1000*60*60*10,
+                    httpOnly:true,
+                })
+                .status(200)       
+                res.json({data: "done"});
+            }
+            else{
+                res.json({data: "Not done"})
+            }
     })
 }
 

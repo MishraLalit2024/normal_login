@@ -24,8 +24,9 @@ form.addEventListener("submit", async function(event){
     })
     .then(data => {
         if(data.data=="done"){
-            document.getElementById('linker').innerHTML="";
-            document.getElementById('linker').innerText="Login successfully"
+            document.getElementById('linker').innerHTML=`<a href="http://localhost:9900/next">Next</a>`;
+            console.log("Done");
+            // document.getElementById('linker').innerText="Login successfully"
         }
         else{
             document.getElementById('linker').innerHTML="";
